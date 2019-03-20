@@ -1,0 +1,22 @@
+Forum - lösningsförslag:
+
+Givet är en URL. När man besöker sidan möts man av lite text samt en input form.
+
+Skickar man in något i formuläret får man som svar "This function is currently under development". 
+Många gånger kan formulär sakna inputvalidering, men i det här fallet är den bara där för vilseledning.
+Efter några enkla test för att se om exempelvis SQLi är möjligt märker man att det inte ger något och går vidare.
+
+Läser man texten ser man först:
+"Welcome, Guest!"
+Det är en första hint på att det kan finnas olika behörigetsnivåer.
+
+Sedan följer texten:
+"Why don't you share the recipe for your favorite cake instead?"
+Vilket är en obskyr hint att uppgiften kan ha något att göra med kakor/cookies.
+
+Undersöker man kakorna ser man att kakan user_data sätts med ett värde som är base64 encoded.
+
+Genom att decodea base64 strängen (ex. echo "e2lkOjEwfQ==" | base64 -d) får man ut ett JSON objekt: "{id:10}"
+
+Nu kan man testa att ändra id till olika värden, varav om man sätter "{id:0}" (fast base64 encoded: "e2lkOjB9A") så får man ut flaggan:
+SSM{S3ss1on_H1j4ck1ng_1s_n0t_s0_d1ff1cult_with_pr3dictable_t0k3ns}
