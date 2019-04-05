@@ -1,7 +1,5 @@
 # Snabba hash
-#### Problemskapare:
+#### Problemskapare: Herman Karlsson
 #### Poäng: 300
 #### Antal solves: 20
 
-
-TODO: lägg till lösning
